@@ -1,0 +1,13 @@
+.app {
+  padding: 2.6rem 9.5rem;
+  height: 100vh;
+  width: 100vw;
+
+  position: relative;
+
+  & > p {
+    position: absolute;
+    bottom: 100px;
+    left: 500px;
+  }
+}
