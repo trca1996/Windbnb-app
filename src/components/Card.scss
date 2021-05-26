@@ -1,0 +1,54 @@
+.card {
+  width: 33 rem;
+
+  img {
+    width: 100%;
+    height: 26.9rem;
+    border-radius: 2.4rem;
+    object-fit: cover;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__type {
+    flex: 1;
+    color: var(--color-gray);
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    margin-bottom: 1.1rem;
+  }
+
+  &__superHost {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-black-light);
+    border: 1px solid var(--color-black-light);
+    border-radius: 1.2rem;
+    padding: 0.7rem 0.9rem;
+    margin-right: 1rem;
+    margin-top: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
+  &__rating {
+    color: var(--color-black-light);
+    font-weight: 500;
+    font-size: 1.4rem;
+
+    span {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+    }
+  }
+
+  &__title {
+    color: var(--color-black);
+    font-weight: 600;
+    font-size: 1.6rem;
+  }
+}

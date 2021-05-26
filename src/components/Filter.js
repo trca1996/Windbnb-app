@@ -1,19 +1,26 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getFilterData } from "../features/dataSlice";
 import "./Filter.scss";
 
 function Filter() {
+  const dispatch = useDispatch();
   const [extend, setExtend] = useState(false);
-
-  const [location, setLocation] = useState("");
 
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
 
-  const guests = adults + children;
+  const [location, setLocation] = useState("");
+
+  let arg = {
+    city: location.toLowerCase().trim(),
+    guests: adults + children,
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (extend) setExtend(!extend);
+    dispatch(getFilterData(arg));
   };
 
   const handleChangeLocation = (e) => {
