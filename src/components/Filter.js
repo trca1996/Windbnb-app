@@ -4,9 +4,24 @@ import "./Filter.scss";
 function Filter() {
   const [extend, setExtend] = useState(false);
 
+  const [location, setLocation] = useState("");
+
+  const [adults, setAdults] = useState(0);
+  const [children, setChildren] = useState(0);
+
+  const guests = adults + children;
+
   const handleSearch = (e) => {
     e.preventDefault();
-    setExtend(!extend);
+    if (extend) setExtend(!extend);
+  };
+
+  const handleChangeLocation = (e) => {
+    setLocation(e.target.value);
+  };
+
+  const onClickInput = () => {
+    if (!extend) setExtend(true);
   };
 
   return (
@@ -15,6 +30,9 @@ function Filter() {
         <label htmlFor="location" className="filter__input">
           <span>LOCATION</span>
           <input
+            value={location}
+            onChange={handleChangeLocation}
+            onClick={onClickInput}
             autoComplete="off"
             id="location"
             type="text"
@@ -25,9 +43,12 @@ function Filter() {
         <label htmlFor="guests" className="filter__input">
           <span>GUESTS</span>
           <input
+            value={adults + children === 0 ? "" : adults + children}
+            readOnly
+            onClick={onClickInput}
             autoComplete="off"
             id="guests"
-            type="text"
+            type="number"
             placeholder="Add guests"
           />
         </label>
@@ -44,21 +65,25 @@ function Filter() {
 
       <div className="filter__options">
         <div className="filter__locations">
-          <button value="Helsinki">
+          <button onClick={(e) => setLocation(e.target.value)} value="Helsinki">
             <span className="material-icons">place</span>
-            <p>Helsinki, Finland</p>
+            {/* <p>Helsinki, Finland</p> */}
+            Helsinki, Finland
           </button>
-          <button value="Turku">
+          <button onClick={(e) => setLocation(e.target.value)} value="Turku">
             <span className="material-icons">place</span>
-            <p>Turku, Finland</p>
+            {/* <p>Turku, Finland</p> */}
+            Turku, Finland
           </button>
-          <button value="Oulu">
+          <button onClick={(e) => setLocation(e.target.value)} value="Oulu">
             <span className="material-icons">place</span>
-            <p>Oulu, Finland</p>
+            {/* <p>Oulu, Finland</p> */}
+            Oulu, Finland
           </button>
-          <button value="Vaasa">
+          <button onClick={(e) => setLocation(e.target.value)} value="Vaasa">
             <span className="material-icons">place</span>
-            <p>Vaasa, Finland</p>
+            {/* <p>Vaasa, Finland</p> */}
+            Vaasa, Finland
           </button>
         </div>
 
@@ -67,9 +92,19 @@ function Filter() {
             <p className="filter__guests--head">Adults</p>
             <span className="filter__guests--ages">Ages 13 or above</span>
             <div>
-              <button className="filter__guests--minus">-</button>
-              <p>0</p>
-              <button className="filter__guests--plus">+</button>
+              <button
+                onClick={() => setAdults(adults === 0 ? 0 : adults - 1)}
+                className="filter__guests--minus"
+              >
+                -
+              </button>
+              <p>{adults}</p>
+              <button
+                onClick={() => setAdults(adults + 1)}
+                className="filter__guests--plus"
+              >
+                +
+              </button>
             </div>
           </div>
 
@@ -77,9 +112,19 @@ function Filter() {
             <p className="filter__guests--head">Children</p>
             <span className="filter__guests--ages">Ages 2-12</span>
             <div>
-              <button className="filter__guests--minus">-</button>
-              <p>0</p>
-              <button className="filter__guests--plus">+</button>
+              <button
+                onClick={() => setChildren(children === 0 ? 0 : children - 1)}
+                className="filter__guests--minus"
+              >
+                -
+              </button>
+              <p>{children}</p>
+              <button
+                onClick={() => setChildren(children + 1)}
+                className="filter__guests--plus"
+              >
+                +
+              </button>
             </div>
           </div>
         </div>
