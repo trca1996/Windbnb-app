@@ -1,19 +1,47 @@
+@import "./design-tokens/scss-variables";
+
 .app {
   padding: 2.6rem 9.5rem;
   position: relative;
 
+  @include respond(small-screen) {
+    // padding: 2.6rem 7.5rem;
+    padding: 2.6rem 7.5vw;
+  }
+
   & > img {
     margin-top: 2rem;
+
+    @include respond(tablet) {
+      margin-top: 0;
+    }
+  }
+
+  &__createBy {
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 6rem;
+    text-align: center;
+  }
+
+  &__userName {
+    text-decoration: underline;
   }
 }
 
 .main {
   margin-top: 12rem;
 
+  @include respond(extra-small) {
+    margin-top: 17rem;
+  }
+
   &__heading {
     display: flex;
     justify-content: space-between;
     margin-bottom: 3.2rem;
+    align-items: center;
 
     h1 {
       font-weight: 700;
@@ -33,6 +61,10 @@
     grid-template-columns: repeat(auto-fit, minmax(33rem, 1fr));
     grid-gap: 2rem;
     justify-items: center;
+
+    @include respond(extra-small) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__message {

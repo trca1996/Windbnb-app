@@ -6,6 +6,8 @@ import "./Filter.scss";
 function Filter() {
   const dispatch = useDispatch();
   const [extend, setExtend] = useState(false);
+  const [locationShow, setlocationShow] = useState(false);
+  const [guestsShow, setGuestsShow] = useState(false);
 
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
@@ -27,8 +29,16 @@ function Filter() {
     setLocation(e.target.value);
   };
 
-  const onClickInput = () => {
+  const onClickLocation = () => {
     if (!extend) setExtend(true);
+    setlocationShow(true);
+    setGuestsShow(false);
+  };
+
+  const onClickGuests = () => {
+    if (!extend) setExtend(true);
+    setGuestsShow(true);
+    setlocationShow(false);
   };
 
   return (
@@ -39,7 +49,7 @@ function Filter() {
           <input
             value={location}
             onChange={handleChangeLocation}
-            onClick={onClickInput}
+            onClick={onClickLocation}
             autoComplete="off"
             id="location"
             type="text"
@@ -52,7 +62,7 @@ function Filter() {
           <input
             value={adults + children === 0 ? "" : adults + children}
             readOnly
-            onClick={onClickInput}
+            onClick={onClickGuests}
             autoComplete="off"
             id="guests"
             type="number"
@@ -71,7 +81,11 @@ function Filter() {
       </form>
 
       <div className="filter__options">
-        <div className="filter__locations">
+        <div
+          className={`filter__locations ${
+            locationShow ? "" : "filter__locations--hidden"
+          }`}
+        >
           <button onClick={(e) => setLocation(e.target.value)} value="Helsinki">
             <span className="material-icons">place</span>
             {/* <p>Helsinki, Finland</p> */}
@@ -94,7 +108,11 @@ function Filter() {
           </button>
         </div>
 
-        <div className="filter__guests">
+        <div
+          className={`filter__guests ${
+            guestsShow ? "" : "filter__guests--hidden"
+          }`}
+        >
           <div>
             <p className="filter__guests--head">Adults</p>
             <span className="filter__guests--ages">Ages 13 or above</span>

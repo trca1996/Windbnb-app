@@ -47,6 +47,11 @@ function App() {
           )}
         </div>
       </main>
+
+      <p className="app__createBy">
+        created by <span className="app__userName">trca1996</span> -
+        devChallenges.io
+      </p>
     </div>
   );
 }

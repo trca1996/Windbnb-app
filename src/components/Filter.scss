@@ -1,3 +1,5 @@
+@import "../design-tokens/scss-variables";
+
 .filter {
   background-color: white;
   z-index: 100;
@@ -13,6 +15,24 @@
   margin-right: 9.6rem;
   padding-left: 3.2rem;
 
+  @include respond(tablet) {
+    margin-top: 7rem;
+    margin-right: 0;
+    right: 50%;
+    transform: translateX(50%);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @include respond(small-screen) {
+    margin-top: 8rem;
+    width: 75%;
+  }
+
+  @include respond(extra-small) {
+    height: 12rem;
+  }
+
   transition-property: width, margin, padding, box-shadow, height;
   transition-duration: 0.2s;
   transition-delay: 0.2s, 0.2s, 0.2s, 0s, 0s;
@@ -27,6 +47,10 @@
     transition-delay: 0s, 0s, 0s, 0.2s, 0.2s;
     -webkit-box-shadow: 0px 17px 18px 0px rgba(0, 0, 0, 0.22);
     box-shadow: 0px 17px 18px 0px rgba(0, 0, 0, 0.22);
+
+    @include respond(small-screen) {
+      padding: 3.2rem 10vw;
+    }
   }
 
   &__form {
@@ -36,6 +60,10 @@
     margin-bottom: 4rem;
     margin-top: 2px;
     margin-right: 2px;
+
+    @include respond(extra-small) {
+      flex-direction: column;
+    }
   }
 
   &__input {
@@ -46,6 +74,11 @@
     flex-direction: column;
     outline: none;
     border-right: 1px solid var(--color-white);
+
+    @include respond(small-screen) {
+      border-right: none;
+      min-width: 8rem;
+    }
 
     span {
       font-weight: 800;
@@ -60,6 +93,10 @@
 
     input:focus {
       outline: none;
+    }
+
+    @include respond(small-screen) {
+      flex: 0.5;
     }
   }
 
@@ -82,6 +119,13 @@
     margin-left: auto;
     margin-right: auto;
 
+    @include respond(small-screen) {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     p {
       font-size: 1.4rem;
       font-weight: 700;
@@ -92,6 +136,10 @@
     span {
       font-size: 1.7rem;
       color: var(--color-primary);
+
+      @include respond(small-screen) {
+        display: none;
+      }
     }
 
     &--extend {
@@ -101,19 +149,32 @@
       }
       span {
         color: var(--color-white);
+
+        @include respond(small-screen) {
+          display: inline-block;
+        }
       }
     }
   }
 
   &__options {
     display: flex;
-    gap: 22rem;
+
+    // @include respond(tablet) {
+    //   justify-content: center;
+    // }
   }
 
   &__locations {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex: 0.33;
+    transition: all 0.2s linear;
+
+    @include respond(tablet) {
+      flex: 1;
+    }
 
     button {
       display: flex;
@@ -123,11 +184,26 @@
       outline: none;
       margin-bottom: 3.6rem;
       color: var(--color-black-light);
+      font-size: 1.4rem;
+    }
+
+    &--hidden {
+      opacity: 0;
+
+      @include respond(tablet) {
+        display: none;
+      }
     }
   }
 
   &__guests {
     font-size: 1.4rem;
+    flex: 0.33;
+    transition: all 0.2s linear;
+
+    @include respond(tablet) {
+      flex: 1;
+    }
 
     & > div {
       margin-bottom: 5.2rem;
@@ -158,7 +234,7 @@
       outline: none;
       width: 2.3rem;
       height: 2.3rem;
-      border-radius: 4px;
+      border-radius: 0.4rem;
       color: var(--color-gray);
     }
 
@@ -169,6 +245,14 @@
       height: 2.3rem;
       border-radius: 4px;
       color: var(--color-gray);
+    }
+
+    &--hidden {
+      opacity: 0;
+
+      @include respond(tablet) {
+        display: none;
+      }
     }
   }
 }

@@ -1,11 +1,21 @@
+@import "../design-tokens/scss-variables";
+
 .card {
   width: 33rem;
+
+  @include respond(extra-small) {
+    width: 100%;
+  }
 
   img {
     width: 100%;
     height: 26.9rem;
     border-radius: 2.4rem;
     object-fit: cover;
+
+    @include respond(extra-small) {
+      height: 30vh;
+    }
   }
 
   &__heading {

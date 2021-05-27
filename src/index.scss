@@ -1,3 +1,5 @@
+@import "./design-tokens/scss-variables";
+
 *,
 *::after,
 *::before {
@@ -9,6 +11,10 @@
 html {
   // This defines w hat 1rem is -- 10px --
   font-size: 62.5%;
+
+  @include respond(small-screen) {
+    font-size: 50%;
+  }
 }
 
 body {
